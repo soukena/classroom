@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>#{msgs.Manage}</title>
+    </h:head>
+    <h:body>
+        <ui:decorate template="/app_templates/app_template.xhtml"> 
+            <h:form id="manage_form">               
+                <p:dataTable id="manage_tbl"
+                             class="dataTable"
+                             value="#{manageLecturesBean.lectures}"                    
+                             selection="#{manageLecturesBean.selectedLecture}"
+                             rowKey="#{singleLecture.lectureNUM}"                    
+                             var="singleLecture"   
+                             rows="2"     
+                             rowsPerPageTemplate="1,2,3,4,5"
+                             dir="#{langBean.dir}"
+                             emptyMessage="#{msgs.no_lecturs}"
+                             paginator="true"
+                             paginatorPosition="top" 
+                             paginatorTemplate="#{langBean.isEnglish? '{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}' : '{RowsPerPageDropdown} {LastPageLink} {NextPageLink} {PageLinks} {PreviousPageLink} {FirstPageLink}'}"
+                             >
+
+                    <p:ajax event="rowSelectRadio"
+                            update=":manage_form:manage_tbl"/>
+
+                    <f:facet name="header" id="header">
+                            <p:outputLabel  value ="#{langBean.isEnglish?manageLecturesBean.drNameEN:manageLecturesBean.drNameAr}"  /> 
+                    </f:facet>
+
+                    <p:column selectionMode="single" style="width:5%"/>
+
+                    
+                              
+                    
+              <p:column headerText="#{msgs.lectureTitle}"
+                              style="width:20%"
+                              filterBy="#{langBean.isEnglish?singleLecture.lectureNameEN:singleLecture.lectureNameAR}"
+                              filterMatchMode="contains"
+                              sortBy="#{langBean.isEnglish?singleLecture.lectureNameEN:singleLecture.lectureNameAR}"> 
+                            
+                        <h:outputText value="#{langBean.isEnglish?singleLecture.lectureNameEN:singleLecture.lectureNameAR}"/> 
+                  
+                    </p:column>
+
+                    
+
+                    <p:column headerText="#{msgs.lectureURL}"
+                              style="width:20%" 
+                              sortBy="#{singleLecture.lectureURL}">       
+                        <p:link value="#{singleLecture.lectureURL}" href="#{singleLecture.lectureURL}"> </p:link>
+                    </p:column>
+        
+                    <f:facet name="footer">
+                        <p:toolbar style="border: none">
+                            <p:toolbarGroup align="#{languageBean.screenLeft}">
+                               
+                                  
+                                 <p:commandButton value="#{msgs.edit}"
+                                                 icon="ui-icon-pencil"                                  
+                                                 iconPos="#{langBean.styleFloat}"
+                                                 styleClass="commandButton"
+                                                 style="float:#{langBean.styleFloat}"                                                                                                
+                                                 disabled="#{manageLecturesBean.selectedLecture==null}"                                                 
+                                                 actionListener="#{manageLecturesBean.saveSelectedItemId()}"
+                                                 action="updateLecture" />
+                                 
+                                <p:commandButton value="#{msgs.delete}"
+                                                 icon="ui-icon-minus"                                  
+                                                 iconPos="#{langBean.styleFloat}"
+                                                 styleClass="commandButton"
+                                                 style="float:#{langBean.styleFloat}"                                                                                                
+                                                 disabled="#{manageLecturesBean.selectedLecture==null}"
+                                                 onclick="return confirm('#{msgs.confirm_delete_event}?');"
+                                                 actionListener="#{manageLecturesBean.deleteSelectedLecture()}"
+                                                 action="ManageLectures" />
+                            </p:toolbarGroup>
+                        </p:toolbar>
+                    </f:facet>
+                </p:dataTable>
+                
+                      <p:commandButton value="#{msgs.back}"
+                                  icon="ui-icon-"                                
+                                 iconPos="#{langBean.styleFloat}"
+                                 styleClass="commandButton"
+                                  immediate="true" 
+                                 style="float:#{langBean.styleFloat}"
+                                 action="manage_lectures" /> 
+ 
+                 <p:commandButton value="#{msgs.UploadLecture}"
+                                                icon="ui-icon-plus"                                    
+                                                 iconPos="#{langBean.styleFloat}"
+                                                 styleClass="commandButton"
+                                                 immediate="true"
+                                                 style="float:#{langBean.styleFloat}"
+                                                 action="updateLecture" /> 
+            
+            </h:form>
+        </ui:decorate>
+    </h:body>
+</html>

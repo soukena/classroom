@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>#{msgs.manage_events}</title>
+    </h:head>
+    <h:body>
+        <ui:decorate template="/app_templates/app_template.xhtml">  
+            <h:form id="add_event">            
+                <p:messages id="msgs" closable="true" globalOnly="true"/>
+                <p:panel header="#{langBean.isEnglish?LecViewBean.lecture.courseNameEn:LecViewBean.lecture.courseNameAr}:"                            
+                         style="min-height:400px; 
+                                direction:#{langBean.dir};margin-top:10px; font-size:10pt">
+                    <h:panelGrid id="add"
+                                 style="float: #{langBean.styleFloat};" 
+                                 columns="1"                              
+                                 dir="#{langBean.dir}">
+                        
+
+                            <br/>
+                            <p:link value="#{langBean.isEnglish?LecViewBean.lecture.lecture1NameEn:LecViewBean.lecture.lecture1NameAr}:" href="#{LecViewBean.lecture.lecture1}">
+                        </p:link>
+                            <br/>
+                            <br/>
+                            
+                         <p:link value="#{langBean.isEnglish?LecViewBean.lecture.lecture2NameEn:LecViewBean.lecture.lecture2NameAr}:" href="#{LecViewBean.lecture.lecture2}">
+                            
+                        </p:link>
+                             <br/>
+                            <br/>
+                              <p:link value="#{langBean.isEnglish?LecViewBean.lecture.lecture3NameEn:LecViewBean.lecture.lecture3NameAr}:" href="#{LecViewBean.lecture.lecture3}">
+                            
+                        </p:link>
+                           
+                       
+                    </h:panelGrid>
+                </p:panel>
+
+               
+         
+                
+              <p:commandButton value="#{msgs.back}"
+                                 icon="ui-icon-cancel"  
+                                 iconPos="#{langBean.styleFloat}"
+                                 styleClass="commandButton"
+                                 immediate="true" 
+                                 style="float:#{langBean.styleFloat}"                                 
+                                 action="manage_courses_student"  /> 
+            </h:form>
+        </ui:decorate>
+    </h:body>
+</html>
+
