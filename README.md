@@ -1,5 +1,4 @@
-# StudentServicesFall2017
-Fall 2017 Project
+
 
 #Virtual Calss Room system :
 Virtual Classroom is a collaborative teaching tool to assist the students to learn in an interactive manner. 
@@ -69,7 +68,9 @@ Oracle Sql developer
 
 --------------------------------------------------------------------------------------------------------------------------------------------------
 Group Member :
--Eman AL-Dasoqi
-- Soukina AL_ Glilat 
+
+- Soukena AL_ Glilat 
+
+-Eman AL-Dasoqi 
 
 
